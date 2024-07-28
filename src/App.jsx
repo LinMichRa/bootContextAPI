@@ -8,15 +8,16 @@ import { Context } from './context/Context'
 function App() {
   const [count, setCount] = useState(0)
 
-  const client = {
-    id: 1,
-    first_name: "Luis",
-    last_name:"Ramirez",
-    phone: "33332323",
-    city:"Bogota"
-  }
+  const[user, setUser] = useState({
+    username:'@Linda',
+    name: 'Linda',
+    phone: '2333323'
+  })
   return (
-    <Context.Provider value={client}>
+    <Context.Provider value={{
+      user,
+      setUser
+    }}>
       <div className='App'>
         <AppRouter />
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import { Home } from '../components/Home';
 import { Articles } from '../components/Articles';
@@ -7,8 +7,12 @@ import { Contact } from '../components/Contact';
 import { Login } from '../components/Login';
 import { ErrorPage } from '../components/ErrorPage'
 import logo from '../assets/logo.png';
+import { Context } from '../context/Context'
 
 export const AppRouter = () => {
+
+  const {user, setUser} = useContext(Context);
+
   return (
     <section className='content'>
       <Router>
@@ -31,11 +35,26 @@ export const AppRouter = () => {
               <li>
                 <NavLink to ='/contacto'>Contacto</NavLink>
               </li>
+
+            {user.username !== null ? (
+              <>
               <li>
-                <NavLink to ='/login'>Identificate</NavLink>
-            </li>
+                <NavLink to ='/'>{user.username}</NavLink>
+                </li>
+                <li>
+                <a href='/' onClick={ e => {
+                  e.preventDefault();
+                  setUser({username : null})
+                }}>Cerrar Sesión</a>
+                </li>
+              </>
+              
+                ) : (
+                <li>    
+                  <NavLink to ='/login'>Identificate</NavLink>
+                </li>
+                )}
             </ul>
-            
           </nav>
         </header>
           
