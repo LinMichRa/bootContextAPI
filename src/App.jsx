@@ -9,10 +9,8 @@ function App() {
 
   return (
     <div className='App'>
-      <header className='App-header'>
-        <h1>Ejercicio context API con React</h1>
         <AppRouter />
-      </header>
+
     </div>
   )
 }
