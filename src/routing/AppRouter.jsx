@@ -5,59 +5,55 @@ import { Articles } from '../components/Articles';
 import { About } from '../components/About';
 import { Contact } from '../components/Contact';
 import { Login } from '../components/Login';
-import { ErrorPage } from '../components/ErrorPage'
+import { ErrorPage } from '../components/ErrorPage';
 import logo from '../assets/logo.png';
-import { Context } from '../context/Context'
+import { Context } from '../context/Context';
 
 export const AppRouter = () => {
-
-  const {user, setUser} = useContext(Context);
+  const { user, setUser } = useContext(Context);
 
   return (
     <section className='content'>
       <Router>
-        {/* Menu de navegacion */}
+        {/* Menu de navegación */}
         <header className='header-nav'>
           <nav>
-          <div className='logo'>
-                <img src={logo} alt="logo" className='logo-img'/>
-          </div>
+            <div className='logo'>
+              <img src={logo} alt="logo" className='logo-img' />
+            </div>
             <ul>
               <li>
-                <NavLink to ='/'>Inicio</NavLink>
+                <NavLink to='/'>Inicio</NavLink>
               </li>
               <li>
-                <NavLink to ='/articulos'>Articulos</NavLink>
+                <NavLink to='/articulos'>Artículos</NavLink>
               </li>
               <li>
-                <NavLink to ='/acerca-de'>Acerca de</NavLink>
+                <NavLink to='/acerca-de'>Acerca de</NavLink>
               </li>
               <li>
-                <NavLink to ='/contacto'>Contacto</NavLink>
+                <NavLink to='/contacto'>Contacto</NavLink>
               </li>
-
-            {user.username !== null ? (
+              {user.username !== null ? (
               <>
-              <li>
-                <NavLink to ='/'>{user.username}</NavLink>
+                <li>
+                  <NavLink to='/' id="text-username">{user.username}</NavLink>
                 </li>
                 <li>
-                <a href='/' onClick={ e => {
-                  e.preventDefault();
-                  setUser({username : null})
-                }}>Cerrar Sesión</a>
+                  <a href='/' onClick={ e => {
+                    e.preventDefault();
+                    setUser({username: null})
+                  }} >Cerrar Sesión</a>
                 </li>
               </>
-              
-                ) : (
-                <li>    
-                  <NavLink to ='/login'>Identificate</NavLink>
+               ) : (
+                <li>
+                  <NavLink to='/login'>Identifícate</NavLink>
                 </li>
-                )}
+              )}
             </ul>
           </nav>
         </header>
-          
 
         {/* Configurar Rutas */}
         <Routes>
@@ -69,8 +65,7 @@ export const AppRouter = () => {
           <Route path='/login' element={<div className="content"><Login /></div>}></Route>
           <Route path='*' element={<div className="error-page"><ErrorPage /></div>}></Route>
         </Routes>
-    </Router>
+      </Router>
     </section>
-    
-  )
-}
+  );
+};

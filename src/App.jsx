@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './styles/App.css'
@@ -6,13 +6,16 @@ import { AppRouter } from './routing/AppRouter'
 import { Context } from './context/Context'
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  const[user, setUser] = useState({
-    username:'@Linda',
-    name: 'Linda',
-    phone: '2333323'
-  })
+  const [user, setUser] = useState(() => {
+    const storeUser  = localStorage.getItem("user");
+    return storeUser ?  JSON.parse (storeUser) : {};
+  });
+
+  useEffect (() => {
+    localStorage.setItem("user",JSON.stringify(user));
+  },[user]);
+
   return (
     <Context.Provider value={{
       user,
