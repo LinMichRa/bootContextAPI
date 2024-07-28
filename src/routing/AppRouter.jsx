@@ -4,15 +4,20 @@ import { Home } from '../components/Home';
 import { Articles } from '../components/Articles';
 import { About } from '../components/About';
 import { Contact } from '../components/Contact';
-import {  Login } from '../components/Login';
+import { Login } from '../components/Login';
 import { ErrorPage } from '../components/ErrorPage'
+import logo from '../assets/logo.png';
 
 export const AppRouter = () => {
   return (
-    <Router>
+    <section className='content'>
+      <Router>
         {/* Menu de navegacion */}
         <header className='header-nav'>
           <nav>
+          <div className='logo'>
+                <img src={logo} alt="logo" className='logo-img'/>
+          </div>
             <ul>
               <li>
                 <NavLink to ='/'>Inicio</NavLink>
@@ -37,14 +42,16 @@ export const AppRouter = () => {
 
         {/* Configurar Rutas */}
         <Routes>
-            <Route path='/' element={<Home />}></Route>
-            <Route path='/inicio' element={<Home />}></Route>
-            <Route path='/articulos' element={<Articles />}></Route>
-            <Route path='/acerca-de' element={<About />}></Route>
-            <Route path='/contacto' element={<Contact />}></Route>
-            <Route path='/login' element={<Login />}></Route>
-            <Route path='*' element={<div className="error-page"><ErrorPage /></div>}></Route>
+          <Route path='/' element={<div className="content"><Home /></div>}></Route>
+          <Route path='/inicio' element={<div className="content"><Home /></div>}></Route>
+          <Route path='/articulos' element={<div className="content"><Articles /></div>}></Route>
+          <Route path='/acerca-de' element={<div className="content"><About /></div>}></Route>
+          <Route path='/contacto' element={<div className="content"><Contact /></div>}></Route>
+          <Route path='/login' element={<div className="content"><Login /></div>}></Route>
+          <Route path='*' element={<div className="error-page"><ErrorPage /></div>}></Route>
         </Routes>
     </Router>
+    </section>
+    
   )
 }
