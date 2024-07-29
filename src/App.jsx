@@ -12,9 +12,27 @@ function App() {
     return storeUser ?  JSON.parse (storeUser) : {};
   });
 
+  // Inicializa el estado del modo oscuro con el valor de localStorage si existe
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const darkMode = JSON.parse(localStorage.getItem('darkMode'));
+    return darkMode || false;
+  });
+
   useEffect (() => {
     localStorage.setItem("user",JSON.stringify(user));
   },[user]);
+
+  // Este useEffect se ejecuta cada vez que cambia el estado `isDarkMode`
+  useEffect(() => {
+    localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
+
+  // Función para alternar el modo oscuro
+  const toggleDarkMode = () => {
+    // Alterna el valor del modo oscuro
+    setIsDarkMode(prevMode => !prevMode);
+  };
 
   return (
     <Context.Provider value={{

@@ -8,6 +8,7 @@ import { Login } from '../components/Login';
 import { ErrorPage } from '../components/ErrorPage';
 import logo from '../assets/logo.png';
 import { Context } from '../context/Context';
+import { DarkMode } from '../components/DarkMode';
 
 export const AppRouter = () => {
   const { user, setUser } = useContext(Context);
@@ -51,6 +52,9 @@ export const AppRouter = () => {
                   <NavLink to='/login'>Identifícate</NavLink>
                 </li>
               )}
+              <li>
+              <DarkMode />
+            </li>
             </ul>
           </nav>
         </header>
